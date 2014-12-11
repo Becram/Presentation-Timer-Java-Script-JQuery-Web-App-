@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="flipclock.css">
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+		<script src="flipclock.js"></script>
+	</head>
+	<body>
+	<div class="clock" style="margin:2em;"></div>
+	<div class="message"></div>
+	<form class="message">
+		<div id ='newclock'>
+		  Time Input(in minutes):<input id='inputvalue'type='text' name='addtime' value=""><br><input type='button' name='addtime' value="start" onclick="start()">
+
+		</div>
+	</form>
+
+	<script type="text/javascript">
+		var clock;
+		
+		function start(){
+		$(document).ready(function() {
+			var clock;
+			var input_value=document.getElementById("inputvalue").value;
+			if (isNaN(input_value)) {
+            alert("Don't try be oversmart ...Enter a number dumbass");
+            return;
+            }
+		    var newdata=input_value*60;
+			clock = $('.clock').FlipClock({
+		        clockFace: 'DailyCounter',
+		        autoStart: false,
+		        callbacks: {
+		        	stop: function() {
+		        		alert('The clock has stopped!')
+		        	}
+		        }
+		    });
+				    
+		    clock.setTime(newdata);
+		    clock.setCountdown(true);
+		    clock.start();
+
+		});
+		}
+	</script>
+	
+	</body>
+</html>
